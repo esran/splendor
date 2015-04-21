@@ -14,9 +14,9 @@ public class BoardImpl implements Board, BoardInternal {
     private static final int MAX_LEVELS = 3;
     private static final int MAX_POSITIONS = 4;
 
-    private List<Deck> decks;
+    private Deck decks[];
     private Card cards[][];
-    private Map<Colour,Integer> chips;
+    private Map<Colour,Integer> chips = new HashMap<>();
     private int jokers;
 
     BoardImpl(int numPlayers) {
@@ -36,37 +36,22 @@ public class BoardImpl implements Board, BoardInternal {
         // Setup the initial stacks of jokers and chips
         jokers = numChips;
         for (Colour colour : Colour.values()) {
-            chips.put(colour,numChips);
-        }
-
-        // TODO: Get the initial decks from static data
-        decks = new ArrayList<>();
-        for (Deck deck : decks) {
-            deck.shuffle();
+            chips.put(colour, numChips);
         }
 
         // Deal out the initial state
+        decks = new Deck[MAX_LEVELS];
         cards = new Card[MAX_LEVELS][MAX_POSITIONS];
         for (int level = 0 ; level < MAX_LEVELS ; level++) {
+            // TODO: Get the initial decks from static data
+            decks[level] = new Deck();
+            decks[level].shuffle();
+
             for (int position = 0 ; position < MAX_POSITIONS ; position++) {
-                cards[level][position] = decks.get(level).dealCard();
+                cards[level][position] = decks[level].dealCard();
             }
         }
 
-    }
-
-    private static boolean checkLevel(int level) {
-        if (level < 0 || level >= MAX_LEVELS) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean checkPosition(int position) {
-        if (position < 0 || position >= MAX_POSITIONS) {
-            return false;
-        }
-        return true;
     }
 
     @Override
@@ -87,7 +72,7 @@ public class BoardImpl implements Board, BoardInternal {
     @Override
     public Card takeCard(int level, int position) {
         Card card = cards[level][position];
-        cards[level][position] = decks.get(level).dealCard();
+        cards[level][position] = decks[level].dealCard();
 
         return card;
     }
@@ -100,9 +85,9 @@ public class BoardImpl implements Board, BoardInternal {
     }
 
     @Override
-    public void returnChips(List<Colour> chips) {
-        for (Colour colour : chips) {
-            this.chips.put(colour, this.chips.get(colour) + 1);
+    public void returnChips(Map<Colour, Integer> chips) {
+        for (Colour colour : chips.keySet()) {
+            this.chips.put(colour, this.chips.get(colour) + chips.get(colour));
         }
     }
 
