@@ -1,6 +1,4 @@
-package com.conicaleffort;
-
-import com.conicaleffort.game.Colour;
+package com.conicaleffort.splendor.api;
 
 import java.util.Map;
 
@@ -9,7 +7,7 @@ import java.util.Map;
  */
 public interface Card {
 
-    Integer getScore();
+    Integer getVP();
     Colour getGem();
     Map<Colour,Integer> getCost();
 

@@ -1,6 +1,6 @@
 package com.conicaleffort.data;
 
-import com.conicaleffort.Card;
+import com.conicaleffort.splendor.api.Card;
 
 import java.util.ArrayList;
 import java.util.List;

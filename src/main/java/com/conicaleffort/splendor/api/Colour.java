@@ -1,4 +1,4 @@
-package com.conicaleffort.game;
+package com.conicaleffort.splendor.api;
 
 /*
  * Created by sean on 20/04/15.

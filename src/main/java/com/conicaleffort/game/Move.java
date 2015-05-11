@@ -1,5 +1,8 @@
 package com.conicaleffort.game;
 
+import com.conicaleffort.splendor.api.Colour;
+import com.conicaleffort.splendor.api.Level;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class Move {
 
     private MoveType type;
 
-    private int level;
+    private Level level;
     private int position;
     private int jokers;
     private List<Colour> colours;
@@ -31,7 +34,7 @@ public class Move {
         return type;
     }
 
-    public static Move buyCard(int level, int position, int jokers) {
+    public static Move buyCard(Level level, int position, int jokers) {
         Move move = new Move();
 
         move.type = MoveType.BUY_CARD;
@@ -53,7 +56,7 @@ public class Move {
         return move;
     }
 
-    public int getLevel() {
+    public Level getLevel() {
         return level;
     }
 
@@ -69,7 +72,7 @@ public class Move {
         return colours;
     }
 
-    public static Move stashCard(int level, int position) {
+    public static Move stashCard(Level level, int position) {
         Move move = new Move();
 
 

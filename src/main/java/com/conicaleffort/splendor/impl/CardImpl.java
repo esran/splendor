@@ -1,7 +1,7 @@
-package com.conicaleffort.impl;
+package com.conicaleffort.splendor.impl;
 
-import com.conicaleffort.Card;
-import com.conicaleffort.game.Colour;
+import com.conicaleffort.splendor.api.Card;
+import com.conicaleffort.splendor.api.Colour;
 
 import java.util.Map;
 
@@ -10,19 +10,19 @@ import java.util.Map;
  */
 public class CardImpl implements Card {
 
-    private Integer score;
+    private Integer vp;
     private Map<Colour, Integer> cost;
     private Colour gem;
 
-    CardImpl(Map<Colour, Integer> cost, Colour gem, Integer score) {
+    CardImpl(Map<Colour, Integer> cost, Colour gem, Integer vp) {
         this.cost = cost;
         this.gem = gem;
-        this.score = score;
+        this.vp = vp;
     }
 
     @Override
-    public Integer getScore() {
-        return score;
+    public Integer getVP() {
+        return vp;
     }
 
     @Override
